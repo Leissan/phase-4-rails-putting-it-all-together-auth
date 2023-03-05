@@ -59,6 +59,9 @@ function LogList() {
                                 <Button as={Link} onClick={() => deleteLog(log.id)}>
                                     Delete log
                                 </Button>
+                                <Button as={Link} to={`/update_log/${log.id}`}>
+                                    Update log
+                                </Button>
                             </Box>
                         </Log>
                     ))
