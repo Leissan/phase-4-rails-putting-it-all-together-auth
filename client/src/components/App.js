@@ -6,17 +6,15 @@ import NewExercise from "../pages/NewExercise";
 import ExerciseList from "../pages/ExerciseList";
 import NewLog from "../pages/NewLog";
 import LogList from "../pages/LogList";
-import axios from 'axios'
 
 function App() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     // auto-login
-    axios.get("/me").then((r) => {
-      console.log(r.status)
-      if (r.status === 200) {
-        setUser(r.data)
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
       }
     });
   }, []);
