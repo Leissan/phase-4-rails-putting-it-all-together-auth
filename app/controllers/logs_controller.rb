@@ -7,7 +7,9 @@ class LogsController < ApplicationController
       exercise = log.exercise
 
       res << {
+        id: log.id,
         title: exercise.title,
+        exercise_id: exercise.id,
         description: exercise.description,
         repetition_type: log.repetition_type,
         repetition_count: log.repetition_count,
@@ -19,11 +21,22 @@ class LogsController < ApplicationController
   end
 
   def show
-    render json: @log.to_json
+    log = Log.find(params[:id])
+    exercise = log.exercise
+
+    render json: {
+      id: log.id,
+      exercise_id: exercise.id,
+      title: exercise.title,
+      description: exercise.description,
+      repetition_type: log.repetition_type,
+      repetition_count: log.repetition_count,
+      log_date: log.log_date,
+    }
   end
 
   def update
-    @log.update(**logs_params)
+    Log.find(params[:id]).update(log_date: DateTime.now, **logs_params)
   end
 
   def create
@@ -31,13 +44,15 @@ class LogsController < ApplicationController
   end
 
   def destroy
-    @log.destroy
+    log.destroy
+
+    render :index
   end
   
   private
 
   def log
-    @log = Log.find(params[:id])
+    Log.find(params[:id])
   end
 
   def logs_params

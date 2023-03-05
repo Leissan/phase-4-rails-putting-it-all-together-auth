@@ -18,6 +18,14 @@ function LogList() {
         return setReadMore(!read)
     }
 
+    const deleteLog = (id) => {
+        console.log("?????", id)
+        fetch(`/logs/${id}`, {method: "DELETE"})
+            .then((r) => r.json())
+            .then(setLogs);
+    }
+
+
     return (
         <>
             <Wrapper>
@@ -48,6 +56,12 @@ function LogList() {
                                 <p>
                                     Was made at: {log.log_date}
                                 </p>
+                                <Button as={Link} onClick={() => deleteLog(log.id)}>
+                                    Delete log
+                                </Button>
+                                <Button as={Link} to={`/update_log/${log.id}`}>
+                                    Update log
+                                </Button>
                             </Box>
                         </Log>
                     ))

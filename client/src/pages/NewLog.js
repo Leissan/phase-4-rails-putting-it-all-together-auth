@@ -3,8 +3,6 @@ import {useHistory} from "react-router";
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 import {Button, Error, FormField, Input, Label, Textarea} from "../styles";
-import AsyncSelect from "react-select/async";
-import Select from "react-select";
 
 function NewLog({user}) {
     const [title, setTitle] = useState("My Awesome Exercise");
@@ -67,7 +65,6 @@ function NewLog({user}) {
                             onChange={(e) => setExerciseId(e.target.value)}
                         />
                     </FormField>
-                    <Select/>
                     <FormField>
                         <Label htmlFor="repetitionCount">Repetition count</Label>
                         <Input

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import ReactMarkdown from "react-markdown";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import styled from "styled-components";
-import { Box, Button } from "../styles";
+import {Box, Button} from "../styles";
 
 function ExerciseList() {
     const [exercises, setExercises] = useState([]);
@@ -22,23 +22,16 @@ function ExerciseList() {
                     </Button>
                 </div>
 
-                {exercises.length > 0 ? (
+                {
                     exercises.map((exercise) => (
                         <Exercise key={exercise.id}>
                             <Box>
-                                <h2>{exercise.title}</h2>
+                                <h2>{exercise.id}: {exercise.title}</h2>
                                 <ReactMarkdown>{exercise.description}</ReactMarkdown>
                             </Box>
                         </Exercise>
                     ))
-                ) : (
-                    <>
-                        <h2>No Exercises Found</h2>
-                        <Button as={Link} to="/new">
-                            Make a New Exercise
-                        </Button>
-                    </>
-                )}
+                }
             </Wrapper>
         </>
     );
