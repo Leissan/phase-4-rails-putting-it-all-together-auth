@@ -7,6 +7,7 @@ class LogsController < ApplicationController
       exercise = log.exercise
 
       res << {
+        id: log.id,
         title: exercise.title,
         description: exercise.description,
         repetition_type: log.repetition_type,
@@ -23,7 +24,7 @@ class LogsController < ApplicationController
   end
 
   def update
-    @log.update(**logs_params)
+    log.update(**logs_params)
   end
 
   def create
@@ -31,13 +32,15 @@ class LogsController < ApplicationController
   end
 
   def destroy
-    @log.destroy
+    log.destroy
+
+    render :index
   end
   
   private
 
   def log
-    @log = Log.find(params[:id])
+    Log.find(params[:id])
   end
 
   def logs_params
