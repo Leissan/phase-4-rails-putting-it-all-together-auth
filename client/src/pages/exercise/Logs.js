@@ -27,9 +27,9 @@ function Logs({userLogs}) {
                     <p>
                         Repetion type: {log.repetition_type}
                     </p>
-                    <p>
+                    {/* <p>
                         Repetion count: {log.repetition_type}
-                    </p>
+                    </p> */}
                     <p>
                         Was made at: {log.log_date}
                     </p>

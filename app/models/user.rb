@@ -1,8 +1,12 @@
 class User < ApplicationRecord
-    has_secure_password
+    validates :fave_destination, presence: true
+    validate :fave_destination_rule
+end
 
-    has_many :logs
-    has_many :exercises, through: :logs
+private
 
-    validates :username, presence: true, uniqueness: true
+def fave_destination_rule
+    unless fave_destination.include? ("Brazil")
+        errors.add(:fave_destination, "must contain 'Brazil'")
+    end
 end
